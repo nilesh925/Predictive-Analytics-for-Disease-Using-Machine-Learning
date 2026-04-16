@@ -1,4 +1,3 @@
-import os
 import pickle  # pre trained model loading
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -8,19 +7,19 @@ st.set_page_config(
 )
 diabetes_model = pickle.load(
     open(
-        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\diabetes_model.sav",
+        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\diabetes_model.sav",
         "rb",
     )
 )
 heart_disease_model = pickle.load(
     open(
-        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\heart_model.sav",
+        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\heart_model.sav",
         "rb",
     )
 )
 parkinsons_model = pickle.load(
     open(
-        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\parkinsons_model.sav",
+        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\parkinsons_model.sav",
         "rb",
     )
 )
@@ -67,13 +66,22 @@ if selected == "Diabetes Prediction":
             DiabetesPedigreeFunction,
             Age,
         ]
-        user_input = [float(x) for x in user_input]
-        diab_prediction = diabetes_model.predict([user_input])
-        if diab_prediction[0] == 1:
-            diab_diagnosis = "The Preson is diabetic"
+
+        if "" in user_input:
+            st.error("Please fill all fields")
         else:
-            diab_diagnosis = "The person is not diabetic"
-        st.success(diab_diagnosis)
+            try:
+                user_input = [float(x) for x in user_input]
+
+                diab_prediction = diabetes_model.predict([user_input])
+
+                if diab_prediction[0] == 1:
+                    st.success("The person is diabetic")
+                else:
+                    st.success("The person is not diabetic")
+
+            except ValueError:
+                st.error("Please enter valid numeric values")
 
 
 if selected == "Heart Diseases Prediction":
@@ -124,13 +132,22 @@ if selected == "Heart Diseases Prediction":
             ca,
             thal,
         ]
-        user_input = [float(x) for x in user_input]
-        heart_prediction = heart_disease_model.predict([user_input])
-        if heart_prediction[0] == 1:
-            heart_disease = "The Preson having Heart Disease"
+
+        if "" in user_input:
+            st.error("Please fill all fields")
         else:
-            heart_disease = "The person not having Heart Disease"
-        st.success(heart_disease)
+            try:
+                user_input = [float(x) for x in user_input]
+
+                heart_prediction = heart_disease_model.predict([user_input])
+
+                if heart_prediction[0] == 1:
+                    st.success("The person has Heart Disease")
+                else:
+                    st.success("The person does not have Heart Disease")
+
+            except ValueError:
+                st.error("Please enter valid numeric values")
 
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Diseases Prediction using ML")
@@ -208,10 +225,20 @@ if selected == "Parkinsons Prediction":
             D2,
             PPE,
         ]
-        user_input = [float(x) for x in user_input]
-        parkinsons_prediction = parkinsons_model.predict([user_input])
-        if parkinsons_prediction[0] == 1:
-            parkinsons_disease = "The Preson having Heart Disease"
+
+        if "" in user_input:
+            st.error("Please fill all fields")
         else:
-            parkinsons_disease = "The person not having Heart Disease"
-        st.success(parkinsons_disease)
+            try:
+
+                user_input = [float(x) for x in user_input]
+
+                parkinsons_prediction = parkinsons_model.predict([user_input])
+
+                if parkinsons_prediction[0] == 1:
+                    st.success("The person has Parkinson's Disease")
+                else:
+                    st.success("The person does not have Parkinson's Disease")
+
+            except ValueError:
+                st.error("Please enter valid numeric values")
