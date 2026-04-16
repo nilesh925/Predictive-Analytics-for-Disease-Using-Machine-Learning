@@ -8,19 +8,19 @@ st.set_page_config(
 )
 diabetes_model = pickle.load(
     open(
-        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\diabetes_model.sav",
+        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\diabetes_model.sav",
         "rb",
     )
 )
 heart_disease_model = pickle.load(
     open(
-        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\heart_model.sav",
+        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\heart_model.sav",
         "rb",
     )
 )
 parkinsons_model = pickle.load(
     open(
-        r"C:\Users\NILESH\OneDrive\Desktop\AICTE INTERNSHIP\Prediction Of Disease Outbreak\saved_models\parkinsons_model.sav",
+        r"Predictive-Analytics-for-Disease-Using-Machine-Learning\saved_models\parkinsons_model.sav",
         "rb",
     )
 )
